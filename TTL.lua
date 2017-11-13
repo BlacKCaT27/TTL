@@ -9,7 +9,7 @@ local currentTarget = nil
 --- EVENT HANDLERS
 
 function events:PLAYER_TARGET_CHANGED(...)
-    if not UnitExists("target") then
+    if not UnitExists("target") or not UnitIsEnemy("player", "target") then
         currentTarget = nil
         TTLFrameRoot:Hide()
     else
@@ -27,7 +27,7 @@ function events:PLAYER_TARGET_CHANGED(...)
 end
 
 local function FormatOutput(timeToLive)
-    if timeToLive == "..." then
+    if timeToLive == "..." or timeToLive == "Dead!" then
         TTLFrameText:SetText("TTL: " .. timeToLive)
     else
         
@@ -48,31 +48,41 @@ local averageDps = 0
 local timeToLive = "..."
 local averageDpsTempStorage = 0
 
+local function reset()
+    dps = 0
+    previousDps = {}
+    averageDps = 0
+    timeToLive = "..."
+end
+
 local function update()
     if currentTarget == nil or not UnitCanAttack("player", "target") then
-        dps = 0
-        previousDps = {}
-        averageDps = 0
-        timeToLive = "..."
-        averageDpsTempStorage = 0
+        reset()
         return 
+    end
+
+    if UnitIsDead("target") then
+        reset()
+        FormatOutput("Dead!")
+        return
     end
     
     currentTarget.targetCurrentHealth = UnitHealth("target")
-    newDps = currentTarget.targetCurrentHealth - currentTarget.lastUpdateHealth
+    newDps = currentTarget.lastUpdateHealth - currentTarget.targetCurrentHealth
 
-    table.insert(previousDps, newDps)
+    previousDps[table.getn(previousDps) + 1] = newDps
     
+    local sum = 0
     for i,v in ipairs(previousDps) do
-        averageDpsTempStorage = averageDpsTempStorage + v
+        sum = sum + v
     end
     
-    averageDps = averageDpsTempStorage / table.getn(previousDps)
+    averageDps = sum / table.getn(previousDps)
 
     if averageDps == 0 then
         timeToLive = "..."
     else
-        timeToLive = -1 * currentTarget.targetMaxHealth / averageDps
+        timeToLive = currentTarget.targetMaxHealth / averageDps
     end
 
     FormatOutput(timeToLive)
