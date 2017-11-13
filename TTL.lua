@@ -9,7 +9,7 @@ local currentTarget = nil
 --- EVENT HANDLERS
 
 function events:PLAYER_TARGET_CHANGED(...)
-    if not UnitExists("target") or not UnitIsEnemy("player", "target") then
+    if not UnitExists("target") or not UnitIsEnemy("player", "target") or not UnitCanAttack("player", "target") then
         currentTarget = nil
         TTLFrameRoot:Hide()
     else
