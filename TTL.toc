@@ -1,0 +1,7 @@
+## Interface: 70300
+## Title: Time-to-live (TTL)
+## Notes: A simple estimate of how long an enemy will live based on the current amount of damage being applied.
+## Version: 1.0.0
+
+TTL.lua
+TTL.xml
