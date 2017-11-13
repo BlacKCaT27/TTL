@@ -12,7 +12,6 @@ function events:PLAYER_TARGET_CHANGED(...)
     if not UnitExists("target") then
         currentTarget = nil
         TTLFrameRoot:Hide()
-        print("Have no target.")
     else
         if currentTarget == nil then
             currentTarget = {}
@@ -102,7 +101,6 @@ function TTL:Init(self)
     end);
 
     for k, v in pairs(events) do
-        print("Registering for event: " .. k)
         TTLFrameRoot:RegisterEvent(k)
     end
 
