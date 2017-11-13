@@ -30,9 +30,9 @@ local function FormatOutput(timeToLive)
     if timeToLive == "..." or timeToLive == "Dead!" then
         TTLFrameText:SetText("TTL: " .. timeToLive)
     else
-        
-        minutes = math.floor(timeToLive / 60)
-        seconds = math.floor(timeToLive % 60)
+        --- add 0.5 to both so that floor() acts like round() would if it existed.
+        minutes = math.floor((timeToLive / 60) + 0.5)
+        seconds = math.floor((timeToLive % 60) + 0.5)
 
         minutesOutput = ""
         if minutes > 0 then
@@ -82,7 +82,7 @@ local function update()
     if averageDps == 0 then
         timeToLive = "..."
     else
-        timeToLive = currentTarget.targetMaxHealth / averageDps
+        timeToLive = currentTarget.targetCurrentHealth / averageDps
     end
 
     FormatOutput(timeToLive)
