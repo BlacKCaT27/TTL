@@ -24,10 +24,6 @@ function events:PLAYER_TARGET_CHANGED(...)
         currentTarget.targetCurrentHealth = UnitHealth("target")
         currentTarget.targetMaxHealth = UnitHealthMax("target")
         currentTarget.lastUpdateHealth = currentTarget.targetCurrentHealth
-        print("Name: " .. currentTarget.targetName)
-        print("Realm: " .. tostring(currentTarget.targetRealm))
-        print("Current Health: " .. currentTarget.targetCurrentHealth)
-        print("Max Health: " .. currentTarget.targetMaxHealth)
     end
 end
 
@@ -46,7 +42,6 @@ local function FormatOutput(timeToLive)
         TTLFrameText:SetText("TTL: " .. minutesOutput .. tostring(seconds) .. "s")
     end
 end
-
 
 local dps = 0
 local previousDps = {}
