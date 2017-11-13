@@ -26,6 +26,8 @@ function events:PLAYER_TARGET_CHANGED(...)
     end
 end
 
+--- END EVENT HANDLERS
+
 local function FormatOutput(timeToLive)
     if timeToLive == "..." or timeToLive == "Dead!" then
         TTLFrameText:SetText("TTL: " .. timeToLive)
