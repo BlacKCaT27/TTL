@@ -11,7 +11,9 @@ is taking no damage so the time is essentially 'infinite'.
 To install the addon from this github page, follow these steps:
 
 1: Click the "Clone or Download" button and select "Download ZIP".
+
 2: Unzip the archive into your WoW installation/Interface/Addons folder.
+
 3: **IMPORTANT**: RENAME the folder to "TTL", removing the branch name (e.g. "-master"). The addon will not appear available in WoW if this step is skipped.
 
 The addon will soon be available via curse.com once it's been thoroughly tested and a few features are added.
