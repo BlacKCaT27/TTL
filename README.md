@@ -8,6 +8,12 @@ The UI consists of a single small window which shows how much time, in minutes a
 the same average dps it's currently taking. If you see "...", this means the addon is still calculating what the time to live is, or the mob
 is taking no damage so the time is essentially 'infinite'. 
 
+![TTL](/../screenshots/screenshots/ttl.png)
+
+Note that the UI will only appear when you are targetting a hostile entity. Neutral entities such as training dummies and critters do not show the UI, and certain scripted creatures (such as the spawnable demons in the Demon Hunter order hall) are flagged in a special way by Blizzard causing this addon not to detect them.
+
+# Installation
+
 To install the addon from this github page, follow these steps:
 
 1: Click the "Clone or Download" button and select "Download ZIP".
